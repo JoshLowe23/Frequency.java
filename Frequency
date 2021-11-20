@@ -1,0 +1,50 @@
+import java.util.Scanner;
+public class Frequency
+{
+    public static void main(String[] args)
+    {
+        Scanner sc = new Scanner(System.in);
+        int ran,inp,a,count,temp;
+       ran = 100;
+        int arr[] = new int[ran];
+        System.out.print("Enter elements in the range 0-99 to array: \n");
+        for(inp=0;inp<ran;inp++)
+        arr[inp]=sc.nextInt();
+      
+        
+        int freq[] = new int[ran];
+        int visited = -1;
+        for(inp=0;inp<ran;inp++)
+        {
+            for(a=inp+1;a<ran;a++)
+            {
+                if (arr[inp]>arr[a])
+                { //arrange array elements in ascending order
+                    temp = arr[inp];
+                    arr[inp] = arr[a];
+                    arr[a] = temp;
+                }
+            }
+        }
+        for(inp=0;inp<ran;inp++)
+        {
+            count = 1;
+            for(a=inp+1;a<ran;a++)
+                {
+                if(arr[inp] == arr[a])
+                {
+                    count++;
+                    freq[a] = visited; //To avoid counting same element again
+                }
+                
+            }
+        if(freq[inp]!=visited)
+        freq[inp] = count;
+        }
+            for(inp=0;inp<ran;inp++)
+        {
+            if(freq[inp]!=visited)
+            System.out.printf("%d occurences of %d\n",freq[inp],arr[inp]);
+        }
+    }
+}
